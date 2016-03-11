@@ -23,57 +23,42 @@ namespace Conways_game_of_life
             typeof(Form).InvokeMember("DoubleBuffered", BindingFlags.SetProperty 
             | BindingFlags.Instance | BindingFlags.NonPublic, null,               
             this, new object[] { true });                       
-            t.Enabled = true;
+            t.Enabled = false;
             t.Interval = 10;
-            t.Tick += update;
+            t.Tick += T_Tick;
         }
 
-        private void update(object sender, EventArgs e)
+        private void T_Tick(object sender, EventArgs e)
         {
             Invalidate();
             if (addingCities)
                 return;
-            bool[][] prevCities = aliveVals;
-            for (int i = 0; i < aliveVals.Length; i++)
+            bool[][] prevCities = new bool[aliveVals.Length][];
+            for (int i = 0; i < prevCities.Length; i++)
             {
-                for (int j = 0; j < aliveVals[i].Length; j++)
+                prevCities[i] = new bool[aliveVals[i].Length];
+                for (int j = 0; j < prevCities[i].Length; j++)
                 {
-                    int nearbyAlive = 0;
-                    if (i - 1 >= 0)
-                    {
-                        nearbyAlive += prevCities[i - 1][j] ? 1 : 0;
-                        if (j - 1 >= 0)
-                        {
-                            nearbyAlive += prevCities[i - 1][j - 1] ? 1 : 0;
-                        }
-                    }
-                    if (j - 1 >= 0)
-                    {
-                        nearbyAlive += prevCities[i][j - 1] ? 1 : 0;
-                        if (i + 1 < prevCities.Length)
-                        {
-                            nearbyAlive += prevCities[i + 1][j - 1] ? 1 : 0;
-                        }
-                    }
-                    if (i + 1 < prevCities.Length)
-                    {
-                        nearbyAlive += prevCities[i + 1][j] ? 1 : 0;
-                        if (j + 1 < prevCities[i].Length)
-                        {
-                            nearbyAlive += prevCities[i + 1][j + 1] ? 1 : 0;
-                        }
-                    }
-                    if (j + 1 < prevCities[i].Length)
-                    {
-                        nearbyAlive += prevCities[i][j + 1] ? 1 : 0;
-                        if (i - 1 >= 0)
-                        {
-                            nearbyAlive += prevCities[i - 1][j + 1] ? 1 : 0;
-                        }
-                    }
-                    aliveVals[i][j] = (prevCities[i][j] ? (nearbyAlive == 2 || nearbyAlive == 3) : (nearbyAlive == 3));
+                    prevCities[i][j] = false;
                 }
             }
+            for (int i = 1; i < aliveVals.Length - 1; i++)
+            {
+                for (int j = 1; j < aliveVals[i].Length - 1; j++)
+                {
+                    int nearbyAlive = 0;
+                    nearbyAlive += aliveVals[i - 1][j] ? 1 : 0;
+                    nearbyAlive += aliveVals[i + 1][j] ? 1 : 0;
+                    nearbyAlive += aliveVals[i][j - 1] ? 1 : 0;
+                    nearbyAlive += aliveVals[i][j + 1] ? 1 : 0;
+                    nearbyAlive += aliveVals[i - 1][j - 1] ? 1 : 0;
+                    nearbyAlive += aliveVals[i - 1][j + 1] ? 1 : 0;
+                    nearbyAlive += aliveVals[i + 1][j - 1] ? 1 : 0;
+                    nearbyAlive += aliveVals[i + 1][j + 1] ? 1 : 0;
+                    prevCities[i][j] = nearbyAlive == 3 || (aliveVals[i][j] && nearbyAlive == 2);
+                }
+            }
+            aliveVals = prevCities;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -92,6 +77,7 @@ namespace Conways_game_of_life
         private void Form1_DoubleClick(object sender, EventArgs e)
         {
             addingCities = !addingCities;
+            t.Enabled = !t.Enabled;
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -99,6 +85,7 @@ namespace Conways_game_of_life
             if(addingCities)
             {
                 aliveVals[e.Y / zoom][e.X / zoom] = !aliveVals[e.Y / zoom][e.X / zoom];
+
             }
         }
 
@@ -108,7 +95,9 @@ namespace Conways_game_of_life
             {
                 for(int j = 0; j < aliveVals[i].Length; j++)
                 {
-                    e.Graphics.FillRectangle((aliveVals[i][j] ? Brushes.Black : Brushes.White), j * zoom, i * zoom, zoom, zoom);
+                    e.Graphics.Clear(Color.White);
+                    if(aliveVals[i][j])
+                        e.Graphics.FillRectangle(Brushes.Black, j * zoom, i * zoom, zoom, zoom);
                 }
             }
         }
