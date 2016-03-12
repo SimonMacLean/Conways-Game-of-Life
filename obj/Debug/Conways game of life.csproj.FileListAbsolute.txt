@@ -2,8 +2,8 @@ c:\users\simon\documents\visual studio 2015\Projects\Conways game of life\Conway
 C:\Users\simon\Documents\Visual Studio 2015\Projects\Conways game of life\Conways game of life\bin\Debug\Conways game of life.exe
 C:\Users\simon\Documents\Visual Studio 2015\Projects\Conways game of life\Conways game of life\bin\Debug\Conways game of life.pdb
 C:\Users\simon\Documents\Visual Studio 2015\Projects\Conways game of life\Conways game of life\obj\Debug\Conways game of life.csprojResolveAssemblyReference.cache
-C:\Users\simon\Documents\Visual Studio 2015\Projects\Conways game of life\Conways game of life\obj\Debug\Conways_game_of_life.Form1.resources
 C:\Users\simon\Documents\Visual Studio 2015\Projects\Conways game of life\Conways game of life\obj\Debug\Conways_game_of_life.Properties.Resources.resources
 C:\Users\simon\Documents\Visual Studio 2015\Projects\Conways game of life\Conways game of life\obj\Debug\Conways game of life.csproj.GenerateResource.Cache
 C:\Users\simon\Documents\Visual Studio 2015\Projects\Conways game of life\Conways game of life\obj\Debug\Conways game of life.exe
 C:\Users\simon\Documents\Visual Studio 2015\Projects\Conways game of life\Conways game of life\obj\Debug\Conways game of life.pdb
+C:\Users\simon\Documents\Visual Studio 2015\Projects\Conways game of life\Conways game of life\obj\Debug\Conways_game_of_life.mainForm.resources

@@ -1,6 +1,6 @@
 ﻿namespace Conways_game_of_life
 {
-    partial class Form1
+    partial class mainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,17 +30,23 @@
         {
             this.SuspendLayout();
             // 
-            // Form1
+            // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 961);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Name = "mainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "Conway\'s Game of Life";
+            this.TransparencyKey = System.Drawing.Color.White;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
-            this.DoubleClick += new System.EventHandler(this.Form1_DoubleClick);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mainForm_KeyDown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mainForm_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mainForm_MouseUp);
             this.ResumeLayout(false);
 
         }
